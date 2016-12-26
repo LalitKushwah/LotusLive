@@ -1,63 +1,50 @@
 package com.example.abc123.lotuslive;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TabHost;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class CustomerDetails extends AppCompatActivity {
+public class CustomerDetails extends Fragment {
 
     String name,email,address,age,lastName;
     TextView custName,emailAddress,custAddress,custAge;
     ArrayList<String> list=new ArrayList<>();
+
+    public CustomerDetails() {
+        //Empty Constructor
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_details);
-        Context context=getApplicationContext();
+    public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.activity_customer_details, container, false);
 
         list.add("Electronic");
         list.add("Furniture");
         list.add("Item-Demo");
         list.add("Item-Demo");
-        custName=(TextView)findViewById(R.id.name);
-        emailAddress=(TextView)findViewById(R.id.textView2);
-        custAddress=(TextView)findViewById(R.id.textView3);
-        custAge=(TextView)findViewById(R.id.textView);
+        custName=(TextView)rootView.findViewById(R.id.name);
+        emailAddress=(TextView)rootView.findViewById(R.id.textView2);
+        custAddress=(TextView)rootView.findViewById(R.id.textView3);
+        custAge=(TextView)rootView.findViewById(R.id.textView);
 
-        RecyclerView listRecycler=(RecyclerView)findViewById(R.id.prevItemList);
-        listRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        ProductAdapter pA=new ProductAdapter(list,context);
+        RecyclerView listRecycler=(RecyclerView)rootView.findViewById(R.id.prevItemList);
+        listRecycler.setLayoutManager(new LinearLayoutManager(container.getContext()));
+        ProductAdapter pA=new ProductAdapter(list,container.getContext());
         listRecycler.setAdapter(pA);
 
 
-        TabHost tabs = (TabHost)findViewById(R.id.tabHost);
-        tabs.setup();
-        tabs.setCurrentTab(0);
-        TabHost.TabSpec tspec11 = tabs.newTabSpec("Tab1");
-        tspec11.setIndicator("Profile");
-        tspec11.setContent(R.id.Profile);
-        tabs.addTab(tspec11);
 
-        final TabHost.TabSpec t2 = tabs.newTabSpec("Tab2");
-        t2.setIndicator("Product");
-        t2.setContent(R.id.Product);
-        tabs.addTab(t2);
-
-        Intent i = getIntent();
+        Intent i = getActivity().getIntent();
         if(!(i.getStringExtra("name").toString().equals(null))) {
 
               if(i.getStringExtra("lastName").equals(null)) {
@@ -74,7 +61,7 @@ public class CustomerDetails extends AppCompatActivity {
                 custAge.setText("21");
             }
 
-
+return rootView;
 
 
     }

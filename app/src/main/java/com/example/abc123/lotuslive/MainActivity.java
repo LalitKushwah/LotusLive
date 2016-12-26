@@ -1,10 +1,9 @@
 package com.example.abc123.lotuslive;
 
 import android.app.Dialog;
-import android.content.EntityIterator;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -28,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
                 if(test.equals("1"))
                 {
-                    Bundle b = new Bundle();
-                    b.putString("name","Lalit");
-                    b.putString("email","lalitlkushwah@gmail.com");
-                    b.putString("age","21");
-                    b.putString("address","Indore");
-                    b.putString("lastName","kushwah");
-                    Intent i  =new Intent(MainActivity.this,CustomerDetails.class);
-                    i.putExtras(b);
+//                    Bundle b = new Bundle();
+//                    b.putString("name","Lalit");
+//                    b.putString("email","lalitlkushwah@gmail.com");
+//                    b.putString("age","21");
+//                    b.putString("address","Indore");
+//                    b.putString("lastName","kushwah");
+                    Intent i  =new Intent(MainActivity.this,HomeActivity.class);
+                  //  i.putExtras(b);
                     startActivity(i);
                 }
                 else{
